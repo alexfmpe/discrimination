@@ -29,12 +29,12 @@ instance Discriminating Group where
 -- * Joins
 --------------------------------------------------------------------------------
 
--- | /O(n)/. Perform a full outer join while explicit merging of the two result tables a table at a time.
+-- | /O(n)/. Perform a full outer join while explicitly merging the two result tables a table at a time.
 --
 -- The results are grouped by the discriminator.
 joining
   :: Discriminating f
-  => f d            -- ^ the discriminator to use
+  => f d               -- ^ the discriminator to use
   -> ([a] -> [b] -> c) -- ^ how to join two tables
   -> (a -> d)          -- ^ selector for the left table
   -> (b -> d)          -- ^ selector for the right table
@@ -113,7 +113,7 @@ leftOuter m abc ac ad bd as bs = catMaybes $ joining m go ad bd as bs where
 -- This takes operation time linear in both the input and result sets.
 rightOuter
   :: Discriminating f
-  => f d        -- ^ the discriminator to use
+  => f d           -- ^ the discriminator to use
   -> (a -> b -> c) -- ^ how to join two rows
   -> (b -> c)      -- ^ row present on the right, missing on the left
   -> (a -> d)      -- ^ selector for the left table
